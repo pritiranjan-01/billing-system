@@ -1,5 +1,10 @@
 /* eslint-disable react-hooks/static-components */
-import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import "./App.css";
 import Menubar from "./Components/Menubar/Menubar.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
@@ -16,24 +21,31 @@ import NotFound from "./pages/NotFound/NotFound.jsx";
 
 function App() {
   const location = useLocation();
-  const {auth} = useContext(AppContext);
+  const { auth } = useContext(AppContext);
 
-  const LoginRoute = ({element}) => {
-    if(auth.token) {
-      return <Navigate to="/dashboard" replace />
+  const LoginRoute = ({ element }) => {
+    if (auth.token) {
+      return <Navigate to="/dashboard" replace />;
     }
     return element;
-  }
+  };
 
-  const ProtectedRoute = ({element, allowedRoles}) => {
-    if(!auth.token) {
-      return <Navigate to="/login" replace />
+  const ProtectedRoute = ({ element, allowedRoles }) => {
+    if (!auth.token) {
+      return <Navigate to="/login" replace />;
     }
-    if(allowedRoles && !allowedRoles.includes(auth.role)) {
-      return <Navigate to="/dashboard" replace />
+    if (allowedRoles && !allowedRoles.includes(auth.role)) {
+      return <Navigate to="/dashboard" replace />;
     }
     return element;
-  }
+  };
+
+  const RootRoute = () => {
+    if (auth.token) {
+      return <Navigate to="/dashboard" replace />;
+    }
+    return <Navigate to="/login" replace />;
+  };
 
   return (
     <>
@@ -49,21 +61,53 @@ function App() {
       />
       {location.pathname !== "/login" && <Menubar />}
       <Routes>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/explore" element={<Explore />} />
-
+        <Route
+          path="/dashboard"
+          element={<ProtectedRoute element={<Dashboard />} />}
+        />
+        <Route
+          path="/explore"
+          element={<ProtectedRoute element={<Explore />} />}
+        />
         {/* Admin only routes  */}
         // eslint-disable-next-line react-hooks/static-components
-        <Route path="/users" element={ <ProtectedRoute element={<ManageUsers />} allowedRoles={["ROLE_ADMIN"]}/>} />
-        <Route path="/categories" element={ <ProtectedRoute element={<ManageCategory />} allowedRoles={["ROLE_ADMIN"]}/>} />
-        <Route path="/items" element={ <ProtectedRoute element={<ManageItems />} allowedRoles={["ROLE_ADMIN"]}/>} />
-
-        <Route path="/orders" element={<OrderHistory />} />
-        <Route path="/login" element={<LoginRoute element={<Login/>} />} />
-        <Route path="/" element={<Dashboard />} />
+        <Route
+          path="/users"
+          element={
+            <ProtectedRoute
+              element={<ManageUsers />}
+              allowedRoles={["ROLE_ADMIN"]}
+            />
+          }
+        />
+        <Route
+          path="/categories"
+          element={
+            <ProtectedRoute
+              element={<ManageCategory />}
+              allowedRoles={["ROLE_ADMIN"]}
+            />
+          }
+        />
+        <Route
+          path="/items"
+          element={
+            <ProtectedRoute
+              element={<ManageItems />}
+              allowedRoles={["ROLE_ADMIN"]}
+            />
+          }
+        />
+        <Route
+          path="/orders"
+          element={<ProtectedRoute element={<OrderHistory />} />}
+        />
+        <Route
+          path="/login"
+          element={<LoginRoute element={<Login />} />}
+        />
+        <Route path="/" element={<RootRoute />} />
         <Route path="*" element={<NotFound />} />
-
-
       </Routes>
     </>
   );

@@ -30,7 +30,7 @@ const Login = () => {
       if (response.status === 200) {
         toast.success("Login successful.");
         setLoading(false);
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("access_token", response.data.token);
         localStorage.setItem("role", response.data.role);
         setAuthData(response.data.token, response.data.role);
         navigate("/dashboard");

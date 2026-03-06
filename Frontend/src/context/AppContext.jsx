@@ -65,11 +65,11 @@ export const AppContextProvider = (props) => {
   useEffect(() => {
     const loadData = async () => {
       if (
-        localStorage.getItem("token") &&
+        localStorage.getItem("access_token") &&
         localStorage.getItem("role")
       ) {
         setAuthData(
-          localStorage.getItem("token"),
+          localStorage.getItem("access_token"),
           localStorage.getItem("role"),
         );
       }

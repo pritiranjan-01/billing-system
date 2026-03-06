@@ -8,7 +8,7 @@ export const createRazorpayOrder = async (paymentData) => {
     paymentData,
     {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
     },
   );
@@ -17,7 +17,7 @@ export const createRazorpayOrder = async (paymentData) => {
 export const verifyPayments = async (paymentData) => {
   return await axios.post(`${BASE_URL}/payment/verify`, paymentData, {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
     },
   });
 };

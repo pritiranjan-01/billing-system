@@ -13,7 +13,7 @@ const Menubar = () => {
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("access_token");
     localStorage.removeItem("role");
     setAuthData(null, null);
     navigate("/login");
