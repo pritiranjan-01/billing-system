@@ -4,7 +4,7 @@ import { AppContext } from "../../context/AppContext";
 import DisplayCategory from "../../Components/DisplayCategory/DisplayCategory";
 import DisplayItem from "../../Components/DisplayItem/DisplayItem";
 import CustomerForm from "../../Components/CustomerForm/CustomerForm";
-import CartItems from "../../Components/CartItems/Cartitems";
+import CartItems from "../../Components/CartItems/CartItems";
 import CartSummary from "../../Components/CartSummary/CartSummary";
 const Explore = () => {
   const { categories } = useContext(AppContext);
