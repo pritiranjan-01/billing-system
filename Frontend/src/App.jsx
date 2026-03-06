@@ -2,7 +2,7 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import "./App.css";
 import Menubar from "./Components/Menubar/Menubar.jsx";
-import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
+import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import ManageCategory from "./pages/ManageCategory/ManageCategory.jsx";
 import ManageUsers from "./pages/ManageUsers/ManageUsers.jsx";
 import ManageItems from "./pages/ManageItems/ManageItems.jsx";
