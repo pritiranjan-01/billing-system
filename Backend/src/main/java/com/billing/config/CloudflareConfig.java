@@ -1,6 +1,8 @@
 package com.billing.config;
 
 
+import java.net.URI;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,24 +12,25 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 
 @Configuration
-public class AWSConfig {
+public class CloudflareConfig {
 
-    @Value("${aws.access.key}")
+    @Value("${cloudflare.r2.access-key}")
     private String accessKey;
 
-    @Value("${aws.secret.key}")
+    @Value("${cloudflare.r2.secret-key}")
     private String secretKey;
 
-    @Value("${aws.region}")
-    private String region;
+    @Value("${cloudflare.r2.endpoint}")
+    private String endpoint;
 
 
     @Bean
     public S3Client s3Client() {
         return S3Client.builder()
-                .region(Region.of(region))
-                .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(accessKey,secretKey)))
+                .endpointOverride(URI.create(endpoint))   
+                .region(Region.of("auto"))               
+                .credentialsProvider(StaticCredentialsProvider.create(
+                        AwsBasicCredentials.create(accessKey, secretKey)))
                 .build();
-
     }
 }

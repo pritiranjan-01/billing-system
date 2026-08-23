@@ -34,7 +34,7 @@ public class Item {
     private Timestamp updatedAt;
     private String imgUrl;
 
-    @ManyToOne // Many Items have same Category
+    @ManyToOne // Many Items have one Category
     @JoinColumn(name = "categoryId",nullable = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     private Category category;

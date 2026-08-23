@@ -22,34 +22,37 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class FileUploadServiceImpl implements FileUploadService {
 
-    @Value("${aws.bucket.name}")
+    @Value("${r2.bucket.name}")
     private String bucketName;
+    
+    @Value("${r2.public.url}")                          // ✅ Added
+    private String r2PublicUrl;
 
     private final S3Client s3Client;
 
     @Override
     public String upload(MultipartFile file, String folderName) {
 
-        if (!folderName.equals("item-assets") && !folderName.equals("category-assets")) {
-            throw new IllegalArgumentException("Invalid folder name");
-        }
+      	 if (!folderName.equals("item-assets") &&
+      	        !folderName.equals("category-assets")) {
+      	        throw new IllegalArgumentException("Invalid folder name");
+      	    }
 
         String originalFilename = file.getOriginalFilename();
         String extension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
         String key = folderName+ "/" + UUID.randomUUID() + "." + extension;
-        // NOTE: Key is the filename and Value is the Object(Image).
+        // NOTE: Key is the folder name+filename and Value is the Object(Image).
         try {
             PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                     .bucket(bucketName)
                     .key(key)
-                    .acl("public-read")
                     .contentType(file.getContentType())
                     .build();
 
             PutObjectResponse response =  s3Client.putObject(putObjectRequest, RequestBody.fromBytes(file.getBytes()));
 
             if (response.sdkHttpResponse().isSuccessful()) {
-                return "https://"+bucketName+".s3.amazonaws.com/"+key;
+                return r2PublicUrl+"/"+key;
             }
             else {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Upload failed");
@@ -62,19 +65,17 @@ public class FileUploadServiceImpl implements FileUploadService {
 
     @Override
     public Boolean delete(String imgURL) {
-        // imgURL =  "https://"+bucketName+".s3.amazonaws.com/"+key;
-        String baseUrl = "https://" + bucketName + ".s3.amazonaws.com/";
-        String key = imgURL.replace(baseUrl, "");
+    	  String key = imgURL.replace(r2PublicUrl + "/", "");  // ✅ Uses R2 public URL
 
-        DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
-               .bucket(bucketName)
-               .key(key)
-               .build();
-        try {
-            DeleteObjectResponse response = s3Client.deleteObject(deleteObjectRequest);
-            return true;
-        }catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+          DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
+                  .bucket(bucketName)
+                  .key(key)
+                  .build();
+          try {
+              DeleteObjectResponse response = s3Client.deleteObject(deleteObjectRequest);
+              return true;
+          } catch (Exception e) {
+              throw new RuntimeException(e);
+          }
     }
 }
