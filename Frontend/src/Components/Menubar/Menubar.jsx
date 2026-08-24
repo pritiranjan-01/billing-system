@@ -1,23 +1,22 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Menubar.css";
 import { assets } from "../../assets/assets";
-import { useContext } from "react";
-import { Collapse } from "bootstrap";
+import { useContext, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 const Menubar = () => {
   const { setAuthData, auth } = useContext(AppContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const isActive = (path) => {
     return location.pathname === path ? "fw-bold text-warning" : "";
   };
 
   const closeMobileMenu = () => {
-    const menu = document.getElementById("navbarNav");
-    if (menu?.classList.contains("show")) {
-      Collapse.getOrCreateInstance(menu).hide();
-    }
+    setProfileOpen(false);
+    setMenuOpen(false);
   };
 
   const logout = () => {
@@ -38,15 +37,20 @@ const Menubar = () => {
       <button
         className="navbar-toggler"
         type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
         aria-controls="navbarNav"
-        aria-expanded="false"
+        aria-expanded={menuOpen}
         aria-label="Toggle navigation"
+        onClick={() => {
+          setMenuOpen((isOpen) => !isOpen);
+          setProfileOpen(false);
+        }}
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse p-2" id="navbarNav">
+      <div
+        className={`collapse navbar-collapse p-2 ${menuOpen ? "show" : ""}`}
+        id="navbarNav"
+      >
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item">
             <Link
@@ -111,13 +115,12 @@ const Menubar = () => {
         {/* dropdown for UserProfile */}
         <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
           <li className="nav-item dropdown">
-            <a
+            <button
+              type="button"
               className="nav-link dropdown-toggle"
               id="navbarDropdown"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
+              aria-expanded={profileOpen}
+              onClick={() => setProfileOpen((isOpen) => !isOpen)}
             >
               <img
                 src={assets.profile}
@@ -126,29 +129,31 @@ const Menubar = () => {
                 height={32}
                 width={32}
               />
-            </a>
+            </button>
 
             <ul
-              className="dropdown-menu dropdown-menu-end"
+              className={`dropdown-menu dropdown-menu-end ${
+                profileOpen ? "show" : ""
+              }`}
               aria-labelledby="navbarDropdown"
             >
               <li>
-                <a href="#" className="dropdown-item">
+                <button type="button" className="dropdown-item">
                   Settings
-                </a>
-                <a href="#" className="dropdown-item">
+                </button>
+                <button type="button" className="dropdown-item">
                   Activity Log
-                </a>
-                <a href="#" className="dropdown-item">
+                </button>
+                <div className="dropdown-item">
                   <hr className="dropdown-divider" />
-                </a>
-                <a
-                  href="#"
+                </div>
+                <button
+                  type="button"
                   className="dropdown-item"
                   onClick={logout}
                 >
                   Logout
-                </a>
+                </button>
               </li>
             </ul>
           </li>
