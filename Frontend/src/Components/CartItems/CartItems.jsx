@@ -6,11 +6,9 @@ const CartItems = () => {
     useContext(AppContext);
 
   return (
-    <>
-      <strong>
-        <p>Cart Items</p>
-      </strong>
-      <div className="p-2 h-100, overflow-y-auto">
+    <section className="cart-items">
+      <h2 className="cart-items-title">Cart Items</h2>
+      <div className="cart-items-list-wrapper">
         {cartItems.length === 0 ? (
           <p className="text-center text-light">No items in cart</p>
         ) : (
@@ -21,9 +19,11 @@ const CartItems = () => {
                   key={index}
                   className="cart-item mb-3 p-3 bg-dark rounded"
                 >
-                  <div className="d-flex justify-content-between align-items-center mb-2">
-                    <h6 className="mb-0 text-light">{item.name}</h6>
-                    <p className="mb-0 text-light">
+                  <div className="cart-item-header">
+                    <h6 className="cart-item-name mb-0 text-light">
+                      {item.name}
+                    </h6>
+                    <p className="cart-item-price mb-0 text-light">
                       ₹ {(item.price * item.quantity).toFixed(2)}
                     </p>
                   </div>
@@ -70,7 +70,7 @@ const CartItems = () => {
           </div>
         )}
       </div>
-    </>
+    </section>
   );
 };
 
