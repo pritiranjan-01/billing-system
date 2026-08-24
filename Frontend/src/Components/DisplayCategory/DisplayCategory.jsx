@@ -15,7 +15,7 @@ const DisplayCategory = ({
       <div className="row" style={{ width: "100%", margin: "0" }}>
         <div
           key="all"
-          className="col-6 col-md-3 col-sm-6"
+          className="col-12 col-sm-6 col-md-3"
           style={{ padding: "3px 10px" }}
         >
           <Category
@@ -36,7 +36,7 @@ const DisplayCategory = ({
         {categories.map((category) => (
           <div
             key={category.categoryId}
-            className="col-6 col-md-3 col-sm-6"
+            className="col-12 col-sm-6 col-md-3"
             style={{ padding: "3px 10px" }}
           >
             <Category

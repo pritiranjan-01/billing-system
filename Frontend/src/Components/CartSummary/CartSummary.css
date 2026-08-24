@@ -1,0 +1,10 @@
+@media (max-width: 420px) {
+  .cart-summary-details .d-flex.gap-3 {
+    gap: 0.5rem !important;
+  }
+
+  .cart-summary-details .btn {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}

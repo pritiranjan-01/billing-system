@@ -35,14 +35,7 @@ const CategoryList = () => {
 
   return (
     <>
-      <div
-        className="category-list-container "
-        style={{
-          height: "100vh",
-          overflowY: "auto",
-          overflowX: "hidden",
-        }}
-      >
+      <div className="category-list-container manage-list-container">
         <div className="row pe-2">
           <div className="input-group mb-3">
             <input

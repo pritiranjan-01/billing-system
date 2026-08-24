@@ -22,3 +22,14 @@
 .card-body{
   padding: 1rem;
 }
+
+@media (max-width: 576px) {
+  .login-background {
+    align-items: flex-start;
+    padding: 24px 12px;
+  }
+
+  .login-background .card {
+    max-width: none;
+  }
+}

@@ -1,6 +1,6 @@
 .order-history-container {
-  padding: 2px;
-  height: calc(100vh - 5rem);
+  padding: 12px;
+  min-height: calc(100vh - 66px);
   box-sizing: border-box;
   background-color: #2c3335;
   overflow-y: auto;   /* 👈 ADD THIS */
@@ -30,6 +30,10 @@
 }
 
 @media (max-width: 768px) {
+  .order-history-container {
+    padding: 12px 8px;
+  }
+
   .table-responsive {
     overflow-x: auto;
   }

@@ -43,7 +43,7 @@ const Dashboard = () => {
     <div className="dashboard-wrapper">
       <div className="dashboard-container">
         {/* Stats Section */}
-        <div className="dashboard-stats d-flex gap-4 mb-4">
+        <div className="dashboard-stats mb-4">
           {/* Today's Sales */}
           <div className="stat-card flex-fill">
             <div className="stat-icon">

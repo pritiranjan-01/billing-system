@@ -6,3 +6,16 @@
     margin-top: 6px;
     margin-left: 5px;
 }
+
+.manage-list-container {
+    max-height: calc(100vh - 130px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+    .manage-list-container {
+        max-height: none;
+        overflow: visible;
+    }
+}

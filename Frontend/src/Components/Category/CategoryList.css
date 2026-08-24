@@ -4,3 +4,16 @@
     border-radius: 10px;
     border: 3px solid white;
 }
+
+.manage-list-container {
+    max-height: calc(100vh - 130px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+    .manage-list-container {
+        max-height: none;
+        overflow: visible;
+    }
+}

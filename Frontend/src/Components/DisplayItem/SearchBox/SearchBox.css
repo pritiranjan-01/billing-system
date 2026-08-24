@@ -1,0 +1,16 @@
+ .item-search-box {
+  width: 220px;
+}
+
+@media (max-width: 576px) {
+  .item-search-box {
+    width: 185px;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .item-search-box .form-control,
+  .item-search-box .input-group-text {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.9rem;
+  }
+}

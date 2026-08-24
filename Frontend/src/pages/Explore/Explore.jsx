@@ -15,7 +15,7 @@ const Explore = () => {
   return (
     <div className="explore-container text-light">
       <div className="left-column">
-        <div className="first-row" style={{ overflowY: "auto" }}>
+        <div className="first-row">
           <DisplayCategory
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
@@ -23,15 +23,12 @@ const Explore = () => {
           />
         </div>
         <hr className="horizontal-line" />
-        <div className="second-row" style={{ overflowY: "auto" }}>
+        <div className="second-row">
           <DisplayItem selectedCategory={selectedCategory} />
         </div>
       </div>
       <div className="right-column d-flex flex-column">
-        <div
-          className="customer-form-container"
-          style={{ height: "15%" }}
-        >
+        <div className="customer-form-container">
           <CustomerForm
             customerName={customerName}
             mobileNumber={mobileNumber}
@@ -40,16 +37,10 @@ const Explore = () => {
           />
         </div>
         <hr className="my-3 text-light" />
-        <div
-          className="cart-items-container"
-          style={{ height: "55%", overflowY: "auto" }}
-        >
+        <div className="cart-items-container">
           <CartItems />
         </div>
-        <div
-          className="cart-summary-container"
-          style={{ height: "30%" }}
-        >
+        <div className="cart-summary-container">
           <CartSummary
             customerName={customerName}
             mobileNumber={mobileNumber}

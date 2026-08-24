@@ -30,7 +30,7 @@ const DisplayItem = ({ selectedCategory }) => {
           </div>
         </div>
         {filteredItems.map((item, index) => (
-          <div key={index} className="col-md-4 mb-2 col-sm-6">
+          <div key={index} className="col-12 col-sm-6 col-md-4 mb-2">
             <Item item={item} />
           </div>
         ))}

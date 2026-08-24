@@ -2,21 +2,21 @@ import "./Category.css";
 const Category = ({ category, isSelected, onClick }) => {
   return (
     <div
-      className="d-flex align-items-center p-2 rounded gap-1 position-relative category-hover"
+      className="category-card d-flex align-items-center rounded position-relative category-hover"
       style={{
         backgroundColor: `${category.bgColor}`,
         cursor: "pointer",
       }}
       onClick={onClick}
     >
-      <div style={{ position: "relative", marginRight: "15px" }}>
+      <div className="category-card-image-wrap">
         <img
           src={category.imgUrl}
           alt={category.name}
           className="category-image"
         />
       </div>
-      <div>
+      <div className="category-card-content">
         <h6 className="text-white mb-0">{category.name}</h6>
         <p className="text-white mb-0">{category.itemCount}</p>
       </div>

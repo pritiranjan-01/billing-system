@@ -1,0 +1,11 @@
+@media (max-width: 420px) {
+  .customer-form-container .d-flex {
+    align-items: flex-start !important;
+    flex-direction: column;
+    gap: 0.35rem !important;
+  }
+
+  .customer-form-container label {
+    width: 100%;
+  }
+}

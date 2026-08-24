@@ -27,14 +27,7 @@ const Userlist = ({ users, setUsers }) => {
 
   return (
     <>
-      <div
-        className="category-list-container "
-        style={{
-          height: "100vh",
-          overflowY: "auto",
-          overflowX: "hidden",
-        }}
-      >
+      <div className="category-list-container manage-list-container">
         <div className="row pe-2">
           <div className="input-group mb-3">
             <input
@@ -56,12 +49,12 @@ const Userlist = ({ users, setUsers }) => {
                user.role !== "ROLE_ADMIN" &&  
               <div key={index} className="col-12 mb-2">
                 <div className="card p-3 bg-secondary">
-                  <div className="d-flex align-items-center">
-                    <div className="flex-grow-1">
+                  <div className="d-flex align-items-center user-card-row">
+                    <div className="flex-grow-1 user-card-content">
                       <h5 className="mb-1 text-white">{user.name}</h5>
-                      <p className="mb-0 text-white">{user.email}</p>
+                      <p className="mb-0 text-white user-email">{user.email}</p>
                     </div>
-                    <div>
+                    <div className="user-delete-action">
                       <button
                         className="btn btn-danger btn-sm "
                         onClick={() => deleteByUserId(user.userId)}

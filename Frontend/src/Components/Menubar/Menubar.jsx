@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Menubar.css";
 import { assets } from "../../assets/assets";
 import { useContext } from "react";
+import { Collapse } from "bootstrap";
 import { AppContext } from "../../context/AppContext";
 const Menubar = () => {
   const { setAuthData, auth } = useContext(AppContext);
@@ -12,7 +13,15 @@ const Menubar = () => {
     return location.pathname === path ? "fw-bold text-warning" : "";
   };
 
+  const closeMobileMenu = () => {
+    const menu = document.getElementById("navbarNav");
+    if (menu?.classList.contains("show")) {
+      Collapse.getOrCreateInstance(menu).hide();
+    }
+  };
+
   const logout = () => {
+    closeMobileMenu();
     localStorage.removeItem("access_token");
     localStorage.removeItem("role");
     setAuthData(null, null);
@@ -44,6 +53,7 @@ const Menubar = () => {
               className={`nav-link ${isActive("/dashboard")}`}
               aria-current="page"
               to="/dashboard"
+              onClick={closeMobileMenu}
             >
               Dashboard
             </Link>
@@ -52,6 +62,7 @@ const Menubar = () => {
             <Link
               className={`nav-link ${isActive("/explore")}`}
               to="/explore"
+              onClick={closeMobileMenu}
             >
               Explore
             </Link>
@@ -62,6 +73,7 @@ const Menubar = () => {
                 <Link
                   className={`nav-link ${isActive("/categories")}`}
                   to="/categories"
+                  onClick={closeMobileMenu}
                 >
                   Manage Categories
                 </Link>
@@ -70,6 +82,7 @@ const Menubar = () => {
                 <Link
                   className={`nav-link ${isActive("/items")}`}
                   to="/items"
+                  onClick={closeMobileMenu}
                 >
                   Manage Items
                 </Link>
@@ -78,6 +91,7 @@ const Menubar = () => {
                 <Link
                   className={`nav-link ${isActive("/users")}`}
                   to="/users"
+                  onClick={closeMobileMenu}
                 >
                   Manage Users
                 </Link>
@@ -88,6 +102,7 @@ const Menubar = () => {
             <Link
               className={`nav-link ${isActive("/orders")}`}
               to="/orders"
+              onClick={closeMobileMenu}
             >
               Order History
             </Link>

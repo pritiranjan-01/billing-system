@@ -11,7 +11,7 @@ const SearchBox = ({ onSearch }) => {
   };
 
   return (
-    <div className="input-group mb-3">
+    <div className="input-group mb-3 item-search-box">
       <input
         type="text"
         className="form-control"

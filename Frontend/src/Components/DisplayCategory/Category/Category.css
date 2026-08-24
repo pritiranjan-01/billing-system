@@ -22,3 +22,46 @@
     border-radius: 10%;
     border: 3px solid white;
 }
+
+.category-card {
+    gap: 0.5rem;
+    min-height: 66px;
+    padding: 0.45rem;
+}
+
+.category-card-image-wrap {
+    flex: 0 0 auto;
+    position: relative;
+}
+
+.category-card-content {
+    min-width: 0;
+    line-height: 1.15;
+}
+
+.category-card-content h6 {
+    overflow-wrap: anywhere;
+    font-size: 0.85rem;
+}
+
+.category-card-content p {
+    font-size: 0.8rem;
+}
+
+.category-card .category-image {
+    width: 42px;
+    height: 42px;
+    border-width: 2px;
+}
+
+@media (min-width: 769px) {
+    .category-card {
+        min-height: 74px;
+        padding: 0.55rem;
+    }
+
+    .category-card .category-image {
+        width: 48px;
+        height: 48px;
+    }
+}
