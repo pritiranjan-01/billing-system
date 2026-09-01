@@ -138,15 +138,6 @@ const Menubar = () => {
               aria-labelledby="navbarDropdown"
             >
               <li>
-                <button type="button" className="dropdown-item">
-                  Settings
-                </button>
-                <button type="button" className="dropdown-item">
-                  Activity Log
-                </button>
-                <div className="dropdown-item">
-                  <hr className="dropdown-divider" />
-                </div>
                 <button
                   type="button"
                   className="dropdown-item"
